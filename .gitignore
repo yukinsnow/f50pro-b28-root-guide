@@ -1,0 +1,24 @@
+# Never publish device images, dumps, credentials or private evidence.
+/private/
+/work/
+/backups/
+/artifacts/
+/logs/
+*.img
+*.bin
+*.raw
+*.apk
+*.zip
+*.7z
+*.tar
+*.xz
+*.exe
+*.dll
+*.log
+adbkey*
+*.pem
+*.key
+.env*
+__pycache__/
+*.py[cod]
+.venv/
