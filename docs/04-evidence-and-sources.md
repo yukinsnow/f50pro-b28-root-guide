@@ -1,4 +1,6 @@
-# 04 · 脱敏证据与上游来源
+# 04 · 实测记录、哈希和工具来源
+
+🟢 这一章不用你执行设备命令。想知道“哪些真的测过，哪些只是准备了方案”，看这里；公开哈希仅作案例记录，不能替代你自己机器的备份。
 
 ## 证据取得方式与限制
 
@@ -46,6 +48,12 @@ uid=0(root) gid=0(root) groups=0(root) context=u:r:magisk:s0
 ro.boot.slot_suffix = _a
 ```
 
+## 高级后台这一章的依据
+
+第 5 章补充时，只读检查了历史 `UFI-RESULT.md`、`ufi-tools-root.sh` 与 `ufi_probe.py`，没有重新安装、刷分区或执行设备命令。历史结果记录 UFI-TOOLS 4.0.0、WebService、私有 0600 socket、登录后 Root API 和一次正常重启验证；不是每项后台功能都已验收。
+
+本地上游源码快照为 `kanoqwq/UFI-TOOLS` 的 `cf83b815efb114ed026f06dc90550845aafbfceb`，核对了包名、启动组件、权限和高级功能的 Samba 等副作用。官方发布页资产的 SHA256 与历史安装 APK 摘要相同。公开示例把历史固定 UID 改成动态读取，并补了退出检查；**这个适配版仅做离线语法检查，没有新增实机部署或重启验证。**
+
 ## 上游与归属
 
 - [againrivers/zte-f50pro-b28-root — Root 全流程](https://github.com/againrivers/zte-f50pro-b28-root/blob/main/docs/01-root.md)：2026-11-06 获取到的页面介绍 v4 ramdisk、完整 Magisk 环境与 TrustOS 条件分支。它的实例用 **B 槽**、某台机器 init_boot-only 能成功；**本案是 A 槽且需要本机派生 TrustOS**。其 USB 症状归因不能替代实际诊断。本文为独立总结，未复制整份指南。
@@ -53,6 +61,7 @@ ro.boot.slot_suffix = _a
 - [TomKing062/spreadtrum_flash](https://github.com/TomKing062/spreadtrum_flash)：spd_dump 源码与命令语义；当前源码可能不同于本案工具版本，使用前审计差异。
 - [Windows nightly 构建入口](https://nightly.link/TomKing062/action_spd_dump_it/workflows/build/main)：来自本地下载器 README 的可变链接，不是锁定产物或供应链保证。
 - [原始 ilyakurdyukov/spreadtrum_flash](https://github.com/ilyakurdyukov/spreadtrum_flash)：原项目来源。
+- [UFI-TOOLS 官方仓库](https://github.com/kanoqwq/UFI-TOOLS)、[用户说明](https://github.com/kanoqwq/UFI-TOOLS/blob/http-server-version/User_Doc.md)、[本次 4.0.0 发布页](https://github.com/kanoqwq/UFI-TOOLS/releases/tag/Release)：第 5 章的应用和组件来源；发布页标签可能被上游修改，应同时保存完整资产摘要。
 - [Magisk 官方项目](https://github.com/topjohnwu/Magisk)：架构、源码与许可；不保证当前发行版与上述参考 APK 相同。
 - [LZ4 官方项目](https://github.com/lz4/lz4)、[Zadig 官方站](https://zadig.akeo.ie/)：自行核对发行、签名、版本和许可。
 
